@@ -42,9 +42,6 @@ namespace Tinyinfo
             Getdata(false);
         }
 
-        /// <summary>
-        /// Refreshes all the hardware info data
-        /// </summary>
         private void RefreshAllHardwareInfo()
         {
             hardwareInfo.RefreshCPUList(true);
@@ -101,9 +98,6 @@ namespace Tinyinfo
             } while (loop);
         }
 
-        /// <summary>
-        /// Loads the CPU data and appends it
-        /// </summary>
         private void LoadCPUData()
         {
             //	TODO: Put CPU info in separate thread for improved speed
@@ -141,9 +135,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the GPU data and appends it
-        /// </summary>
         private void LoadVideoControllerData()
         {
             int id = 0;
@@ -187,9 +178,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the motherboard data and appends it
-        /// </summary>
         private void LoadMotherBoardData()
         {
             string nl = Environment.NewLine;
@@ -210,9 +198,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the BIOS data and appends it
-        /// </summary>
         private void LoadBIOSData()
         {
             string nl = Environment.NewLine;
@@ -235,9 +220,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the battery data and appends it
-        /// </summary>
         private void LoadBatteryData()
         {
             string nl = Environment.NewLine;
@@ -274,9 +256,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the drives data and appends it
-        /// </summary>
         private void LoadDrivesData()
         {
             string nl = Environment.NewLine;
@@ -309,9 +288,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the network adapters data and appends it
-        /// </summary>
         private void LoadNetworkAdaptersData()
         {
             int netAdaptId = 0;
@@ -346,9 +322,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads the memory data and appends it
-        /// </summary>
         private void LoadMemoryData()
         {
             string nl = Environment.NewLine;
@@ -381,10 +354,7 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Safely Overwrite on textbox content
-        /// </summary>
-        /// <param name="text"></param>
+        // Safely Overwrite on textbox content
         private void ShowInfo(string text)
         {
             if (outputBox.InvokeRequired)
@@ -408,9 +378,7 @@ namespace Tinyinfo
             InfoTextBuffer = text;
         }
 
-        /// <summary>
-        /// Appand Text To Text Buffer
-        /// </summary>
+        // Appand Text To Text Buffer
         private void AppendTextSafe(string text)
         {
             // NOTE (HOUDAIFA) : Faster Way
@@ -418,9 +386,7 @@ namespace Tinyinfo
             InfoTextBuffer += text;
         }
 
-        /// <summary>
-        /// Starts thread, changes button states, update info text and increments progress bar
-        /// </summary>
+        //	Starts thread, changes button states, update info text and increments progress bar
         public void LoadInfo()
         {
             infoLabel.Visible = true;
@@ -444,9 +410,7 @@ namespace Tinyinfo
             progressBar.Visible = false;
         }
 
-        /// <summary>
-        /// Stop update thread
-        /// </summary>
+        //	Stop update thread
         public void StopUpdate()
         {
             if (thread.IsAlive)
@@ -457,17 +421,13 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Load System info when Start Button is pressed
-        /// </summary>
+        //	Load System info when Start Button is pressed
         public void startButton_Click(object sender, EventArgs e)
         {
             LoadInfo();
         }
 
-        /// <summary>
-        /// Change Button state and abort thread when Stop Button is pressed
-        /// </summary>
+        //	Change Button state and abort thread when Stop Button is pressed
         private void stopButton_Click(object sender, EventArgs e)
         {
             StopUpdate();
@@ -485,9 +445,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Loads theme to the application
-        /// </summary>
         public void LoadTheme()
         {
             //	Check if file exists, if it doesnt create it with default settings
@@ -537,9 +494,7 @@ namespace Tinyinfo
             outputBox.Font = font;
         }
 
-        /// <summary>
-        /// Opens Settings Window
-        /// </summary>
+        //	Opens Settings Window
         private void settingsItem_Click(object sender, EventArgs e)
         {
             //	Create Settings Window
@@ -565,12 +520,6 @@ namespace Tinyinfo
             ExportToTextFile(1);
         }
 
-        /// <summary>
-        /// Exports the content of hardwareinfo into a text file based on an integer.
-        /// If the integer is 0, it exports it as a plain text.
-        /// If the integer is 1, it exports it as a JSON.
-        /// </summary>
-        /// <param name="mode"></param>
         private void ExportToTextFile(int mode)
         {
             if (outputBox == null)
@@ -622,9 +571,6 @@ namespace Tinyinfo
             }
         }
 
-        /// <summary>
-        /// Returns the hardwareInfo object as a JSON string
-        /// </summary>
         private string GetHardwareInfoAsJSON()
         {
             string finalJson = string.Empty;
@@ -681,18 +627,14 @@ namespace Tinyinfo
         private string servicePack = Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
         private string revision = Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString();
 
-        /// <summary>
-        /// Opens ShellAbout Dialog to display version info
-        /// </summary>
+        //	Opens ShellAbout Dialog to display version info
         private void aboutItem_Click(object sender, EventArgs e)
         {
             //	Create ShellAbout dialog
             ShellAbout(IntPtr.Zero, "About Tinyinfo" + "#Tinyinfo V" + majorVersion + " Service Pack " + servicePack, "Detailed version info:\nTinyinfo v." + version, Icon.Handle);
         }
 
-        /// <summary>
-        /// Opens GitHub repo in browser
-        /// </summary>
+        //	Opens GitHub repo in browser
         private void githubItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/Lion-Craft/Tinyinfo");
